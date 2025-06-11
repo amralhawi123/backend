@@ -15,8 +15,7 @@ module.exports = ({ env }) => ({
       },
     },
   },
-
-  // JWT secret for users-permissions plugin
+  // users-permissions
   'users-permissions': {
     config: {
       jwtSecret: env('JWT_SECRET'),
