@@ -1,5 +1,5 @@
 module.exports = ({ env }) => ({
-  // ...
+  // Cloudinary plugin
   upload: {
     config: {
       provider: 'cloudinary',
@@ -15,5 +15,11 @@ module.exports = ({ env }) => ({
       },
     },
   },
-  // ...
+
+  // JWT secret for users-permissions plugin
+  'users-permissions': {
+    config: {
+      jwtSecret: env('JWT_SECRET'),
+    },
+  },
 });
