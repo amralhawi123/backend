@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sign_ins",
+  "info": {
+    "singularName": "sign-in",
+    "pluralName": "sign-ins",
+    "displayName": "Sign In"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "password": {
+      "type": "password",
+      "required": true
+    }
+  }
+}

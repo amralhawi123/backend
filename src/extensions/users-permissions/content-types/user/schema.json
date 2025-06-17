@@ -65,22 +65,6 @@
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
-    },
-    "UserName": {
-      "type": "string",
-      "required": true
-    },
-    "PassWord": {
-      "type": "integer",
-      "required": true
-    },
-    "YourEmail": {
-      "type": "email",
-      "required": true
-    },
-    "ConfirmPassword": {
-      "type": "integer",
-      "required": true
     }
   }
 }

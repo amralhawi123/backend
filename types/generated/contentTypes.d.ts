@@ -408,6 +408,35 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiSignInSignIn extends Struct.CollectionTypeSchema {
+  collectionName: 'sign_ins';
+  info: {
+    displayName: 'Sign In';
+    pluralName: 'sign-ins';
+    singularName: 'sign-in';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sign-in.sign-in'
+    > &
+      Schema.Attribute.Private;
+    password: Schema.Attribute.Password & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiSignUpSignUp extends Struct.CollectionTypeSchema {
   collectionName: 'sign_ups';
   info: {
@@ -899,7 +928,6 @@ export interface PluginUsersPermissionsUser
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    ConfirmPassword: Schema.Attribute.Integer & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -919,7 +947,6 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
-    PassWord: Schema.Attribute.Integer & Schema.Attribute.Required;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -936,8 +963,6 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
-    UserName: Schema.Attribute.String & Schema.Attribute.Required;
-    YourEmail: Schema.Attribute.Email & Schema.Attribute.Required;
   };
 }
 
@@ -952,6 +977,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::product.product': ApiProductProduct;
+      'api::sign-in.sign-in': ApiSignInSignIn;
       'api::sign-up.sign-up': ApiSignUpSignUp;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
